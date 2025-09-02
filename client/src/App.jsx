@@ -16,7 +16,7 @@ import { AuthContext } from "./context/auth-context";
 
 function App() {
   const { auth } = useContext(AuthContext);
-
+    
   return (
     <Routes>
       <Route
@@ -86,6 +86,7 @@ function App() {
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
+ 
 }
 
 export default App;
