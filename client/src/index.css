@@ -2,91 +2,82 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+
+
+html, body, #root { height: 100%; }
+body { @apply bg-white text-gray-900; }
+:root { color-scheme: light dark; }
+:root.dark body { @apply bg-gray-900 text-gray-100; }
+
+.card { @apply bg-white shadow-sm rounded-lg border border-gray-200 p-4; }
+.dark .card { @apply bg-gray-800 border-gray-700; }
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors disabled:opacity-50 disabled:pointer-events-none;
+}
+.btn-primary { @apply bg-blue-600 text-white hover:bg-blue-700; }
+.dark .btn-primary { @apply bg-blue-500 hover:bg-blue-600; }
+.btn-outline { @apply border border-gray-300 hover:bg-gray-50; }
+.dark .btn-outline { @apply border-gray-600 hover:bg-gray-800; }
+
+/* Global element defaults for dark mode */
+@layer base {
+  input, select, textarea {
+    @apply bg-white text-gray-900 border border-gray-300 rounded-md;
   }
-  a:hover {
-    color: #747bff;
+  .dark input, .dark select, .dark textarea {
+    @apply bg-gray-900 text-gray-100 border-gray-700;
   }
-  button {
-    background-color: #f9f9f9;
-  }
+  table thead tr { @apply border-b border-gray-200; }
+  table tbody tr { @apply border-b border-gray-100; }
+  .dark table thead tr { @apply border-gray-700; }
+  .dark table tbody tr { @apply border-gray-800; }
+  :root { --background: 0 0% 100%; --foreground: 0 0% 3.9%; --card: 0 0% 100%; --card-foreground: 0 0% 3.9%; --popover: 0 0% 100%; --popover-foreground: 0 0% 3.9%; --primary: 0 0% 9%; --primary-foreground: 0 0% 98%; --secondary: 0 0% 96.1%; --secondary-foreground: 0 0% 9%; --muted: 0 0% 96.1%; --muted-foreground: 0 0% 45.1%; --accent: 0 0% 96.1%; --accent-foreground: 0 0% 9%; --destructive: 0 84.2% 60.2%; --destructive-foreground: 0 0% 98%; --border: 0 0% 89.8%; --input: 0 0% 89.8%; --ring: 0 0% 3.9%; --chart-1: 12 76% 61%; --chart-2: 173 58% 39%; --chart-3: 197 37% 24%; --chart-4: 43 74% 66%; --chart-5: 27 87% 67%; --radius: 0.5rem; --sidebar-background: 0 0% 98%; --sidebar-foreground: 240 5.3% 26.1%; --sidebar-primary: 240 5.9% 10%; --sidebar-primary-foreground: 0 0% 98%; --sidebar-accent: 240 4.8% 95.9%; --sidebar-accent-foreground: 240 5.9% 10%; --sidebar-border: 220 13% 91%; --sidebar-ring: 217.2 91.2% 59.8%; }
+  .dark { --background: 0 0% 3.9%; --foreground: 0 0% 98%; --card: 0 0% 3.9%; --card-foreground: 0 0% 98%; --popover: 0 0% 3.9%; --popover-foreground: 0 0% 98%; --primary: 0 0% 98%; --primary-foreground: 0 0% 9%; --secondary: 0 0% 14.9%; --secondary-foreground: 0 0% 98%; --muted: 0 0% 14.9%; --muted-foreground: 0 0% 63.9%; --accent: 0 0% 14.9%; --accent-foreground: 0 0% 98%; --destructive: 0 62.8% 30.6%; --destructive-foreground: 0 0% 98%; --border: 0 0% 14.9%; --input: 0 0% 14.9%; --ring: 0 0% 83.1%; --chart-1: 220 70% 50%; --chart-2: 160 60% 45%; --chart-3: 30 80% 55%; --chart-4: 280 65% 60%; --chart-5: 340 75% 55%; --sidebar-background: 240 5.9% 10%; --sidebar-foreground: 240 4.8% 95.9%; --sidebar-primary: 224.3 76.3% 48%; --sidebar-primary-foreground: 0 0% 100%; --sidebar-accent: 240 3.7% 15.9%; --sidebar-accent-foreground: 240 4.8% 95.9%; --sidebar-border: 240 3.7% 15.9%; --sidebar-ring: 217.2 91.2% 59.8%; }
 }
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-  }
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-  }
+/* Role theme variables */
+:root {
+  --brand-100: rgba(14,165,233,0.1);
+  --brand-200: #bae6fd;
+  --brand-500: #0ea5e9;
+  --brand-700: #0369a1;
+  --brand-900: #0b3b57;
 }
+.theme-admin {
+  --brand-100: rgba(14,165,233,0.1);
+  --brand-200: #bae6fd;
+  --brand-500: #0ea5e9;
+  --brand-600: #0284c7;
+  --brand-700: #0369a1;
+  --brand-900: #082f49;
+}
+.theme-teacher {
+  --brand-100: rgba(16,185,129,0.1);
+  --brand-200: #bbf7d0;
+  --brand-500: #10b981;
+  --brand-600: #059669;
+  --brand-700: #047857;
+  --brand-900: #064e3b;
+}
+.theme-student {
+  --brand-100: rgba(139,92,246,0.1);
+  --brand-200: #ddd6fe;
+  --brand-500: #8b5cf6;
+  --brand-600: #7c3aed;
+  --brand-700: #6d28d9;
+  --brand-900: #4c1d95;
+}
+
+/* Colorful KPI card variants */
+.kpi {
+  @apply rounded-lg p-4 text-white shadow-sm;
+  background-image: linear-gradient(135deg, var(--brand-500), var(--brand-600));
+}
+.kpi .muted { @apply text-white/80 text-xs; }
 
 @layer base {
   * {
-    @apply border-border;
-  }
+    @apply border-border; }
   body {
-    @apply bg-background text-foreground;
-  }
-}
-
-body::-webkit-scrollbar {
-  @apply w-[5px];
-}
-body::-webkit-scrollbar-track {
-  @apply shadow-[inset_0_0_6px_rgba(0,0,0,0.3)];
-}
-body::-webkit-scrollbar-thumb {
-  @apply bg-[darkgrey];
-  outline: 1px solid slategrey;
-}
+    @apply bg-background text-foreground; } }
