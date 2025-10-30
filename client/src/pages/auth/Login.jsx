@@ -9,6 +9,7 @@ export default function Login() {
   const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [role, setRole] = useState('student');
   const navigate = useNavigate();
@@ -80,7 +81,23 @@ export default function Login() {
               </div>
               <div className="relative">
                 <svg className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="10" width="16" height="10" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M8 10V8a4 4 0 118 0v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
-                <Input type="password" placeholder="••••••••" value={password} onChange={(e)=>setPassword(e.target.value)} className="pl-9" required />
+                <Input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e)=>setPassword(e.target.value)}
+                  className="pl-9 pr-14"
+                  required
+                />
+                <button
+                  type="button"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  aria-pressed={showPassword}
+                  onClick={() => setShowPassword(v => !v)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-600 dark:text-gray-300 hover:text-sky-600"
+                >
+                  {showPassword ? 'Hide' : 'Show'}
+                </button>
               </div>
             </div>
 
@@ -93,7 +110,7 @@ export default function Login() {
           </form>
 
           <p className="text-sm text-gray-600 mt-6">
-            Don’t have an account?{' '}
+            Don�?Tt have an account?{' '}
             <Link className="text-sky-600 hover:underline" to="/register">Create one</Link>
           </p>
         </div>
